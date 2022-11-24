@@ -16,9 +16,11 @@ const Header = ({ handleThemeSwitch }) => {
                         <li><Link>Blog</Link></li>
                         <li><Link>DashBoard</Link></li>
                         <li><Link>Item 3</Link></li>
+                        <li><Link>Login</Link></li>
+                        <li><Link>Sign Up</Link></li>
                     </ul>
                 </div>
-                <img className='w-6 lg:w-10 lg:ml-8' src={logo} alt="" />
+                <img className='w-6 lg:w-8 lg:ml-8' src={logo} alt="" />
                 <Link className="text-xl ml-1 md:ml-4 lg:text-3xl font-semibold lg:ml-6 ">Resale Land</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -27,6 +29,8 @@ const Header = ({ handleThemeSwitch }) => {
                     <li><Link>Blog</Link></li>
                     <li><Link>DashBoard</Link></li>
                     <li><Link>Item 3</Link></li>
+                    <li><Link>Login</Link></li>
+                    <li><Link>Sign Up</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
