@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import googleIcon from "../../../src/Images/google.png";
+import { GoogleAuthProvider } from 'firebase/auth';
+
 
 const Login = () => {
 
@@ -10,7 +13,7 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm({});
     const [errorMessage, setErrorMessage] = useState('');
 
-    const { Login } = useContext(AuthContext);
+    const { Login, signInWithGoogle } = useContext(AuthContext);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -32,6 +35,25 @@ const Login = () => {
                 console.log(error.message)
                 setErrorMessage(error.message);
                 toast(`Something went wrong ...Please check your email and password.`)
+            })
+    };
+
+
+    const googleProvider = new GoogleAuthProvider();
+    // Handle Google Sign In
+    const handleGoogleSignIn = data => {
+        signInWithGoogle(googleProvider)
+        setErrorMessage('')
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                toast('Login Successful ...');
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                setErrorMessage(error.message);
+                console.error(error.message);
+                toast(error.message);
             })
     }
 
@@ -73,11 +95,11 @@ const Login = () => {
                     </div>
 
                     <div className='mx-auto'>
-                        <button className='btn bg-slate-700 text-lg hover:bg-green-400 hover:text-black text-white w-full my-4' type="submit">Login</button>
+                        <button className='btn border-none bg-slate-700 text-lg hover:bg-green-400 hover:text-black text-white w-full my-4' type="submit">Login</button>
                     </div>
                     <p className=' text-center'>New to Doctor's Portal ? <Link to='/signup' className='text-cyan-500'>Create an Account</Link> </p>
                     <div className="divider my-4 text-black">OR</div>
-                    <button className='btn btn-outline hover:bg-green-400 text-black w-full mt-6 mb-16' type="submit">Continue With Google</button>
+                    <button onClick={handleGoogleSignIn} className='btn btn-outline text-lg hover:bg-green-400 text-black w-full mt-6 mb-16' type="submit">Continue With <img className='w-6 ml-4' src={googleIcon} alt="" /></button>
                 </form>
             </div>
 
