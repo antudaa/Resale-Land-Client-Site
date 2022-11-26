@@ -16,18 +16,29 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const handleLogin = data => {
+    const [value, setValue] = useState('user')
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
+
+    const handleSignUp = data => {
         setSignUpError('');
-        console.log(data)
         SignUp(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                toast(`Sign Up Successful...`);
-                users(data.name, data.email);
                 console.log(user);
+                toast(`Sign Up Successful...`);
                 const userInfo = {
                     displayName: data.name
                 }
+                const userIn = {
+                    name: data.name,
+                    email: data.email,
+                    role: value,
+                };
+                console.log(userIn);
+
                 updateUser(userInfo)
                     .then(() => { })
                     .catch(error => {
@@ -73,7 +84,7 @@ const SignUp = () => {
                 getUserToken(email);
             });
 
-    }
+    };
 
 
     const getUserToken = email => {
@@ -93,7 +104,7 @@ const SignUp = () => {
                 <div className='mb-10 pt-14'>
                     <h1 className='text-slate-500 text-4xl font-semibold text-center'>Sign Up</h1>
                 </div>
-                <form className='gird grid-cols-1 mx-auto' onSubmit={handleSubmit(handleLogin)}>
+                <form className='gird grid-cols-1 mx-auto' onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control my-4">
                         <label className="label">
                             <span className="label-text text-black">Name</span>
@@ -105,6 +116,17 @@ const SignUp = () => {
                                 })}
                             placeholder="Name" className="input input-bordered  w-full bg-white text-black" />
                         {errors.name && <p className='text-red-600' role="alert">{errors.name?.message}</p>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-black">Role</span>
+                        </label>
+                        <div className="input-group">
+                            <select onChange={handleChange} className="select w-full select-bordered">
+                                <option value='user' defaultChecked>User</option>
+                                <option value='seller' >Seller</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="form-control my-4">
                         <label className="label">

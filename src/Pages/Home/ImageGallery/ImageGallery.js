@@ -81,7 +81,7 @@ const ImageGallery = () => {
 
     return (
         <div>
-            <div className="lg:px-20 lg:pt-20 text-start text-lg lg:text-5xl text-sky-400 font-bold">
+            <div className="lg:px-20 px-4 lg:pt-20 text-start text-2xl lg:text-5xl font-bold text-slate-800">
                 <h1>Top Products</h1>
             </div>
             <div className='lg:p-20 p-4'>
