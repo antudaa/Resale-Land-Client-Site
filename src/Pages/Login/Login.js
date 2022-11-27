@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Context/AuthProvider';
 import googleIcon from "../../../src/Images/google.png";
 import { GoogleAuthProvider } from 'firebase/auth';
+import { AuthContext } from '../../Context/AuthProvider';
 
 
 const Login = () => {
