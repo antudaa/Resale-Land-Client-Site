@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import logo from '../../../Images/logo1.png';
+import man from '../../../Images/man.png';
+
 
 
 const Header = ({ handleThemeSwitch }) => {
@@ -55,13 +57,18 @@ const Header = ({ handleThemeSwitch }) => {
             </div>
             <div className="navbar-end">
                 {
-                    user?.uid ?
+                    user?.photoURL ?
                         <div className="avatar online lg:mr-10">
                             <div className="w-12 rounded-full">
                                 <img src={`${user?.photoURL}`} alt="" title={`${user?.displayName}`} />
                             </div>
                         </div> :
                         <>
+                            <div className="avatar online lg:mr-10">
+                                <div className="w-12 rounded-full">
+                                    <img src={man} alt="" />
+                                </div>
+                            </div>
                         </>
                 }
             </div>

@@ -28,7 +28,7 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast(`Sign Up Successful...`);
+
                 const userInfo = {
                     displayName: data.name
                 }
@@ -38,6 +38,20 @@ const SignUp = () => {
                     role: value,
                 };
                 console.log(userIn);
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(userIn)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast(`Sign Up Successful...`);
+                        }
+                    })
+                    .catch(err => console.log(err.message));
 
                 updateUser(userInfo)
                     .then(() => { })
