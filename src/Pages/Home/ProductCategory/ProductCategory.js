@@ -42,7 +42,7 @@ const ProductCategory = () => {
                     <div className="flex justify-center py-2 gap-2 my-6">
                         {
                             categoryId.map(category => (
-                                <Link to={`/products/${category.categoryId}`} className="btn btn-xs">{category.category}</Link>
+                                <Link to={`/products/${category.category}`} className="btn btn-xs">{category.category}</Link>
 
                             ))
                         }
