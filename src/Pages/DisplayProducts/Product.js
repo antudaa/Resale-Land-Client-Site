@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../Context/AuthProvider';
+import { AuthContext } from '../../Context/AuthProvider';
 import ShowSliderImage from './ShowSliderImage';
-import man from '../../../Images/man.png';
+import man from '../../Images/man.png';
+import AppointmentModal from './AppointmentModal';
 
 
 
@@ -32,7 +33,7 @@ const Product = ({ product }) => {
                     </div>
                 </figure>
                 <div className="card-body p-6">
-                    <div className='flex align-center'>
+                    <div className=''>
                         <p className='card-title text-start'>{`${productName}`}</p>
                         <p className='text-sky-600 text-end'>{`Publish Date : ${postDate}`}</p>
                     </div>
@@ -64,20 +65,20 @@ const Product = ({ product }) => {
                                 <div className="avatar indicator">
                                     {
                                         sellerInfo?.verified ?
-                                            <span className="indicator-item badge badge-primary">Verified</span> :
+                                            <span className="indicator-item badge badge-success">v</span> :
                                             <></>
                                     }
-                                    <div className="w-16 h-16 rounded-full">
+                                    <div className="w-12 h-12 rounded-full">
                                         {
                                             user?.photoURL ?
-                                                <div className="avatar online lg:mr-10">
-                                                    <div className="w-16 rounded-full">
+                                                <div className="avatar lg:mr-10">
+                                                    <div className="w-12 rounded-full">
                                                         <img src={`${user?.photoURL}`} alt="" title={`${user?.displayName}`} />
                                                     </div>
                                                 </div> :
                                                 <>
-                                                    <div className="avatar online lg:mr-10">
-                                                        <div className="w-16 rounded-full">
+                                                    <div className="avatar lg:mr-10">
+                                                        <div className="w-12 rounded-full">
                                                             <img src={man} alt="" />
                                                         </div>
                                                     </div>
@@ -88,13 +89,19 @@ const Product = ({ product }) => {
                                 <p className='font-bold text-sky-600 text-lg'>{`${sellerInfo.name}`}</p>
                             </div>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Watch</button>
+                                <label htmlFor="appointmentModal" className="btn btn-primary">Book</label>
+                                
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
+            <AppointmentModal
+            key={_id}
+            name={productName}
+            price={price}
+            ></AppointmentModal>
         </div>
     );
 };
