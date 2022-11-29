@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const AppointmentModal = ({ name, price }) => {
@@ -27,6 +28,22 @@ const AppointmentModal = ({ name, price }) => {
         }
         console.log(meetingInfo);
 
+        fetch('http://localhost:5000/buyerInfo', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(meetingInfo)
+        })
+            .then(res => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                    toast.success('Your message successfully sent to the seller. Seller will contact with you soon.');
+                } else {
+                    toast.error(data.message);
+                }
+            });
+
     }
 
     return (
@@ -52,13 +69,13 @@ const AppointmentModal = ({ name, price }) => {
                                 <input name='email' value={user?.email} type="text" placeholder="Email" className="input bg-white input-bordered text-center text-black" />
                             </div>
                             <div className="form-control">
-                                <input name='offeringPrice' type="number" placeholder="Price You Are Offering" className="input bg-white input-bordered text-center text-black" required/>
+                                <input name='offeringPrice' type="number" placeholder="Price You Are Offering" className="input bg-white input-bordered text-center text-black" required />
                             </div>
                             <div className="form-control">
-                                <input name='location' type="text" placeholder="Location" className="input bg-white input-bordered text-center text-black" required/>
+                                <input name='location' type="text" placeholder="Location" className="input bg-white input-bordered text-center text-black" required />
                             </div>
                             <div className="form-control">
-                                <input name='phone' type="number" placeholder="Contact No" className="input bg-white input-bordered text-center text-black" required/>
+                                <input name='phone' type="number" placeholder="Contact No" className="input bg-white input-bordered text-center text-black" required />
                             </div>
                             <button type='submit' className='btn btn-primary w-full'>Book</button>
                         </form>

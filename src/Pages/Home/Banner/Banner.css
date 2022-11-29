@@ -8,3 +8,16 @@
     display: inline-block;
     background: linear-gradient(to right, #010524 10%, rgba(21, 21, 21, 0) 100%);
 }
+
+
+#slider-img{
+    height: 90vh;
+    width: 100vw;
+}
+
+@media (max-width: 600px) {
+    #slider-img{
+        height: 40vh;
+        width: 100vw;
+    }
+  }

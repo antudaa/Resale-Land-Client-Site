@@ -5,9 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import googleIcon from '../../../src/Images/google.png';
 import { GoogleAuthProvider } from 'firebase/auth';
+import DynamicRouteName from '../../Hooks/DynamicRouteName';
+
 
 
 const SignUp = () => {
+
+    DynamicRouteName('Sign Up');
+
     const { register, formState: { errors }, handleSubmit } = useForm({});
 
     const { SignUp, updateUser, signInWithGoogle } = useContext(AuthContext);
@@ -21,6 +26,7 @@ const SignUp = () => {
     const handleChange = (e) => {
         setValue(e.target.value);
     };
+
 
     const handleSignUp = data => {
         setSignUpError('');
@@ -36,6 +42,7 @@ const SignUp = () => {
                     name: data.name,
                     email: data.email,
                     role: value,
+
                 };
                 console.log(userIn);
                 fetch(`http://localhost:5000/users`, {
@@ -49,6 +56,7 @@ const SignUp = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast(`Sign Up Successful...`);
+                            navigate('/');
                         }
                     })
                     .catch(err => console.log(err.message));
@@ -61,7 +69,6 @@ const SignUp = () => {
                     })
             })
             .catch(error => {
-                console.log(error.message)
                 setSignUpError(error.message);
             });
     };
@@ -73,44 +80,53 @@ const SignUp = () => {
         signInWithGoogle(googleProvider)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
-                toast('Login Successful ...');
+
+                fetch(`http://localhost:5000/users?email=${user?.email}&name=${user?.displayName}`, {
+                    method: 'PUT',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast(`Login Successful...`);
+                            navigate('/')
+                        }
+                    })
+                    .catch(err => console.log(err.message));
             })
             .catch((error) => {
-                console.error(error.message);
                 toast(error.message);
             })
     }
 
 
 
-    const users = (name, email) => {
-        const user = { name, email };
-        fetch(`http://localhost:5000/users`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-            .then(res => res.json())
-            .then(data => {
-                getUserToken(email);
-            });
+    // const users = (name, email) => {
+    //     const user = { name, email };
+    //     fetch(`http://localhost:5000/users`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(user)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             getUserToken(email);
+    //         });
 
-    };
+    // };
 
 
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.accessToken) {
-                    localStorage.setItem('accessToken', data.accessToken);
-                    navigate('/')
-                }
-            })
-    }
+    // const getUserToken = email => {
+    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data.accessToken) {
+    //                 localStorage.setItem('accessToken', data.accessToken);
+    //                 navigate('/')
+    //             }
+    //         })
+    // }
 
     return (
         <div className='my-20'>

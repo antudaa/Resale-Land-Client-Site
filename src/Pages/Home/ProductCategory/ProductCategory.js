@@ -7,6 +7,7 @@ import laptop from '../../../Images/laptop.png';
 
 const ProductCategory = () => {
 
+
     const [categoryId, setCategoryId] = useState([]);
 
     useEffect(() => {
@@ -15,8 +16,6 @@ const ProductCategory = () => {
             .then(data => setCategoryId(data))
             .catch(error => console.log(error.message));
     }, []);
-
-    console.log(categoryId);
 
 
     return (

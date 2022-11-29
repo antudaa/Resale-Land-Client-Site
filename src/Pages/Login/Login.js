@@ -5,10 +5,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googleIcon from "../../../src/Images/google.png";
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../../Context/AuthProvider';
+import DynamicRouteName from '../../Hooks/DynamicRouteName';
+
 
 
 const Login = () => {
 
+    DynamicRouteName('Login')
 
     const { register, formState: { errors }, handleSubmit } = useForm({});
     const [errorMessage, setErrorMessage] = useState('');
@@ -22,7 +25,6 @@ const Login = () => {
 
     const handleLogin = data => {
         setErrorMessage('');
-        console.log(data)
         Login(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -32,7 +34,6 @@ const Login = () => {
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                console.log(error.message)
                 setErrorMessage(error.message);
                 toast(`Something went wrong ...Please check your email and password.`)
             })
@@ -46,13 +47,24 @@ const Login = () => {
         setErrorMessage('')
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+
+                fetch(`http://localhost:5000/users?email=${user?.email}&name=${user?.displayName}`, {
+                    method: 'PUT',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast(`Login Successful...`);
+                            navigate('/')
+                        }
+                    })
+                    .catch(err => console.log(err.message));
+
                 toast('Login Successful ...');
                 navigate(from, { replace: true });
             })
             .catch((error) => {
                 setErrorMessage(error.message);
-                console.error(error.message);
                 toast(error.message);
             })
     }
@@ -89,9 +101,6 @@ const Login = () => {
                             placeholder="Password" className="input input-bordered w-full bg-white text-black" />
                         {errors.password && <p className='text-red-600' role="alert">{errors.password?.message}</p>}
                         <p className='text-red-600'>{errorMessage}</p>
-                        <label className="label">
-                            <span className="label-text text-black"> <Link>Forgot Password ?</Link> </span>
-                        </label>
                     </div>
 
                     <div className='mx-auto'>
@@ -99,7 +108,7 @@ const Login = () => {
                     </div>
                     <p className=' text-center'>New to Doctor's Portal ? <Link to='/signup' className='text-cyan-500'>Create an Account</Link> </p>
                     <div className="divider my-4 text-black">OR</div>
-                    <button onClick={handleGoogleSignIn} className='btn btn-outline text-lg hover:bg-green-400 text-black w-full mt-6 mb-16' type="submit">Continue With <img className='w-6 ml-4' src={googleIcon} alt="" /></button>
+                    <button onClick={handleGoogleSignIn} className='btn btn-outline hover:bg-slate-700 text-black w-full mt-6 mb-16' type="submit"><img className='w-6 mr-4' src={googleIcon} alt="" /> Google Login</button>
                 </form>
             </div>
 

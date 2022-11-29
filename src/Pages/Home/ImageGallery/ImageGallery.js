@@ -85,15 +85,13 @@ const ImageGallery = () => {
                 <h1>Top Products</h1>
             </div>
             <div className='lg:p-20 p-4'>
-            <PhotoProvider>
-                <PhotoView src=''>
-                    <PhotoAlbum layout="masonry" photos={photos} />
-                </PhotoView>
-            </PhotoProvider>
+                <PhotoProvider>
+                    <PhotoView src=''>
+                        <PhotoAlbum layout="masonry" photos={photos} />
+                    </PhotoView>
+                </PhotoProvider>
 
-            {/* <PhotoAlbum layout="columns" photos={photos} /> */}
-
-        </div>
+            </div>
         </div>
     );
 };

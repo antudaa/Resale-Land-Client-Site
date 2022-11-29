@@ -37,7 +37,7 @@ const Product = ({ product }) => {
                         <p className='card-title text-start'>{`${productName}`}</p>
                         <p className='text-sky-600 text-end'>{`Publish Date : ${postDate}`}</p>
                     </div>
-                    <div className='flex justify-between my-4'>
+                    <div className='flex justify-between my-2'>
                         <div className=''>
                             <p className=' text-lg block'>{`Location`}</p>
                             <p className=' text-lg  font-bold block'>{`${location}`}</p>
@@ -47,7 +47,7 @@ const Product = ({ product }) => {
                             <p className=' text-lg block font-bold'>{`${usedTime}`}</p>
                         </div>
                     </div>
-                    <h1 className='text-xl text-start mt-2 font-bold'>Price</h1>
+                    <h1 className='text-xl text-start mt- font-bold'>Price</h1>
                     <div className='flex align-center'>
                         <div className='mr-16'>
                             <p className='text-start text-slate-600'>Asking Price</p>
@@ -58,7 +58,7 @@ const Product = ({ product }) => {
                             <p className='text-end font-bold text-lg'>{`${originalPrice} Tk`}</p>
                         </div>
                     </div>
-                    <div className='my-4'>
+                    <div className='my-2'>
                         <h1 className='text-sky-600 font-bold text-lg'>{`Seller Info =>`}</h1>
                         <div className='my-4 flex justify-between'>
                             <div>

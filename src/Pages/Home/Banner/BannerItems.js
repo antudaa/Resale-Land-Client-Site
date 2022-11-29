@@ -8,7 +8,7 @@ const BannerItems = ({ data }) => {
 
         <div id={`slide${id}`} className="carousel-item relative w-full">
             <div className='img-slider'>
-                <img src={img} alt='' className="w-full h-full" />
+                <img id='slider-img' src={img} alt='' className="" />
             </div>
 
             <div className="absolute justify-start transform -translate-y-1/2 lg:left-24 md:left-10 left-4 top-1/4">
