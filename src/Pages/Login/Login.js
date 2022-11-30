@@ -42,13 +42,13 @@ const Login = () => {
 
     const googleProvider = new GoogleAuthProvider();
     // Handle Google Sign In
-    const handleGoogleSignIn = data => {
+    const handleGoogleSignIn = () => {
         signInWithGoogle(googleProvider)
         setErrorMessage('')
             .then((result) => {
                 const user = result.user;
 
-                fetch(`http://localhost:5000/users?email=${user?.email}&name=${user?.displayName}`, {
+                fetch(`http://localhost:5000/users?email=${user.email}&name=${user.displayName}`, {
                     method: 'PUT',
                 })
                     .then(res => res.json())
@@ -108,8 +108,9 @@ const Login = () => {
                     </div>
                     <p className=' text-center'>New to Doctor's Portal ? <Link to='/signup' className='text-cyan-500'>Create an Account</Link> </p>
                     <div className="divider my-4 text-black">OR</div>
-                    <button onClick={handleGoogleSignIn} className='btn btn-outline hover:bg-slate-700 text-black w-full mt-6 mb-16' type="submit"><img className='w-6 mr-4' src={googleIcon} alt="" /> Google Login</button>
+
                 </form>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline hover:bg-slate-700 text-black w-full mt-6 mb-16' type="submit"><img className='w-6 mr-4' src={googleIcon} alt="" /> Google Login</button>
             </div>
 
         </div>

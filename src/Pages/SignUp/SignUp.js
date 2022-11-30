@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
@@ -13,7 +13,7 @@ const SignUp = () => {
 
     DynamicRouteName('Sign Up');
 
-    const { register, formState: { errors }, handleSubmit } = useForm({});
+    // const { register, formState: { errors }, handleSubmit } = useForm({});
 
     const { SignUp, updateUser, signInWithGoogle } = useContext(AuthContext);
 
@@ -21,26 +21,32 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const [value, setValue] = useState('user')
+    const [value, setValue] = useState('user');
 
     const handleChange = (e) => {
         setValue(e.target.value);
     };
 
 
-    const handleSignUp = data => {
-        setSignUpError('');
-        SignUp(data.email, data.password)
+    const handleSignUp = event => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const name = form.name.value;
+        // console.log(`Name : ${name} , Email : ${email}, Password : ${password}`);
+
+        SignUp(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-
+                // users(data.name, data.email);
                 const userInfo = {
-                    displayName: data.name
+                    displayName: name,
                 }
                 const userIn = {
-                    name: data.name,
-                    email: data.email,
+                    name: name,
+                    email: email,
                     role: value,
 
                 };
@@ -56,7 +62,6 @@ const SignUp = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast(`Sign Up Successful...`);
-                            navigate('/');
                         }
                     })
                     .catch(err => console.log(err.message));
@@ -76,12 +81,13 @@ const SignUp = () => {
 
     const googleProvider = new GoogleAuthProvider();
     // Handle Google Sign In
-    const handleGoogleSignIn = data => {
+    const handleGoogleSignIn = () => {
         signInWithGoogle(googleProvider)
             .then((result) => {
                 const user = result.user;
+                console.log(user);
 
-                fetch(`http://localhost:5000/users?email=${user?.email}&name=${user?.displayName}`, {
+                fetch(`http://localhost:5000/users?email=${user.email}&name=${user.displayName}`, {
                     method: 'PUT',
                 })
                     .then(res => res.json())
@@ -100,33 +106,33 @@ const SignUp = () => {
 
 
 
-    // const users = (name, email) => {
-    //     const user = { name, email };
-    //     fetch(`http://localhost:5000/users`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             getUserToken(email);
-    //         });
+    const users = (name, email) => {
+        const user = { name, email };
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                getUserToken(email);
+            });
 
-    // };
+    };
 
 
-    // const getUserToken = email => {
-    //     fetch(`http://localhost:5000/jwt?email=${email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.accessToken) {
-    //                 localStorage.setItem('accessToken', data.accessToken);
-    //                 navigate('/')
-    //             }
-    //         })
-    // }
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    navigate('/')
+                }
+            })
+    }
 
     return (
         <div className='my-20'>
@@ -134,7 +140,7 @@ const SignUp = () => {
                 <div className='mb-10 pt-14'>
                     <h1 className='text-slate-500 text-4xl font-semibold text-center'>Sign Up</h1>
                 </div>
-                <form className='gird grid-cols-1 mx-auto' onSubmit={handleSubmit(handleSignUp)}>
+                {/* <form className='gird grid-cols-1 mx-auto' onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control my-4">
                         <label className="label">
                             <span className="label-text text-black">Name</span>
@@ -198,8 +204,51 @@ const SignUp = () => {
                     </div>
                     <p className=' text-center'>Already have an Account ? <Link to='/login' className='text-cyan-500'>Please Login</Link> </p>
                     <div className="divider my-4 text-black">OR</div>
-                    <button onClick={handleGoogleSignIn} className='btn btn-outline text-lg hover:bg-green-400 text-black w-full mt-6 mb-16' type="submit">Continue With <img className='w-6 ml-4' src={googleIcon} alt="" /></button>
+
+                </form> */}
+                <form onSubmit={handleSignUp} className='gird grid-cols-1 mx-auto'>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Name</span>
+                        </label>
+                        <input name='name' type="text" placeholder="name" className="input input-bordered" required />
+
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-black">Role</span>
+                        </label>
+                        <div className="input-group">
+                            <select onChange={handleChange} className="select w-full select-bordered">
+                                <option value='user' defaultChecked>User</option>
+                                <option value='seller' >Seller</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input name='email' type="email" placeholder="email" className="input input-bordered" required />
+
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Password</span>
+                        </label>
+                        <input name='password' type="password" placeholder="password" className="input input-bordered" />
+                    </div>
+                    <div>
+                        <p className='text-red-600'>{signUpError}</p>
+                    </div>
+
+                    <div className='mx-auto'>
+                        <button className='btn border-none bg-slate-700 text-lg hover:bg-green-400 hover:text-black text-white w-full my-4' type="submit">Sign Up</button>
+                    </div>
+                    <p className=' text-center'>Already have an Account ? <Link to='/login' className='text-cyan-500'>Please Login</Link> </p>
+                    <div className="divider my-4 text-black">OR</div>
                 </form>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline text-lg hover:bg-green-400 text-black w-full mt-6 mb-16' type="submit">Continue With <img className='w-6 ml-4' src={googleIcon} alt="" /></button>
             </div>
 
         </div>
