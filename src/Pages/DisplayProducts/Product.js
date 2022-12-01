@@ -2,15 +2,17 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import ShowSliderImage from './ShowSliderImage';
 import man from '../../Images/man.png';
-import AppointmentModal from './AppointmentModal';
+// import AppointmentModal from './AppointmentModal';
+// import ReportModal from './ReportModal/ReportModal';
 
 
 
-const Product = ({ product }) => {
+const Product = ({ product, setSelectBook, setSelectReport }) => {
 
     const { user } = useContext(AuthContext);
+    console.log(product);
 
-    const { _id, productName, img, location, price, originalPrice, usedTime, postDate, sellerInfo } = product;
+    const { _id, productName, img, location, price, originalPrice, usedTime, postDate, sellerInfo, email } = product;
 
 
     return (
@@ -89,19 +91,27 @@ const Product = ({ product }) => {
                                 <p className='font-bold text-sky-600 text-lg'>{`${sellerInfo.name}`}</p>
                             </div>
                             <div className="card-actions justify-end">
-                                <label htmlFor="appointmentModal" className="btn btn-primary">Book</label>
-                                
+                                <label
+                                    htmlFor="appointmentModal"
+                                    className="btn btn-primary"
+                                    onClick={() => setSelectBook(product)}
+                                >Book</label>
+
+                            </div>
+                            <div className=" justify-end">
+                                <label
+                                    htmlFor="ReportModal"
+                                    className="btn btn-warning"
+                                    onClick={() => setSelectReport(product)}
+                                >Report</label>
+
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <AppointmentModal
-            key={_id}
-            name={productName}
-            price={price}
-            ></AppointmentModal>
+
         </div>
     );
 };

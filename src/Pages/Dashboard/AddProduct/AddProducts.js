@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const AddProducts = () => {
@@ -7,6 +8,8 @@ const AddProducts = () => {
     const { user } = useContext(AuthContext);
 
     const [value, setValue] = useState('user');
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -59,7 +62,8 @@ const AddProducts = () => {
             .then(data => {
                 if (data.acknowledged) {
                     form.reset();
-                    toast("Your product added Successfully")
+                    toast("Your product added Successfully");
+                    navigate('/dashboard/sellerProducts')
                 }
             })
             .catch(err => console.log(err.message));

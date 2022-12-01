@@ -21,7 +21,7 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const [value, setValue] = useState('user');
+    const [value, setValue] = useState('buyer');
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -220,7 +220,7 @@ const SignUp = () => {
                         </label>
                         <div className="input-group">
                             <select onChange={handleChange} className="select w-full select-bordered">
-                                <option value='user' defaultChecked>User</option>
+                                <option value='buyer' defaultChecked>User</option>
                                 <option value='seller' >Seller</option>
                             </select>
                         </div>
@@ -248,7 +248,7 @@ const SignUp = () => {
                     <p className=' text-center'>Already have an Account ? <Link to='/login' className='text-cyan-500'>Please Login</Link> </p>
                     <div className="divider my-4 text-black">OR</div>
                 </form>
-                <button onClick={handleGoogleSignIn} className='btn btn-outline text-lg hover:bg-green-400 text-black w-full mt-6 mb-16' type="submit">Continue With <img className='w-6 ml-4' src={googleIcon} alt="" /></button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline hover:bg-slate-700 text-black w-full mt-6 mb-16' type="submit"><img className='w-6 mr-4' src={googleIcon} alt="" /> Google Login</button>
             </div>
 
         </div>

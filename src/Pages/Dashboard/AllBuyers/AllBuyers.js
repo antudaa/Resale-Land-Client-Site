@@ -6,19 +6,21 @@ const AllBuyers = () => {
 
     const { user } = useContext(AuthContext);
 
-    console.log(user);
     const uri = `http://localhost:5000/users/buyers?role=${'buyer'}`;
 
     const { data: buyers = [] } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch(uri);
+            const res = await fetch(uri, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
     });
 
-    console.log(buyers);
 
     return (
         <div>
@@ -33,19 +35,19 @@ const AllBuyers = () => {
                                     <input type="checkbox" className="checkbox" />
                                 </label>
                             </th>
+                            <th>Email</th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
-                            <th></th>
+                            <th>Verify</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {
-                            buyers.map(b => <tr>
-                                {/* <th>
-                {i + 1}
-            </th> */}
+                            buyers.map((b, i) => <tr key={i}>
+                                <th>
+                                    {i + 1}
+                                </th>
                                 <td>
                                     {b.email}
                                 </td>
@@ -53,9 +55,9 @@ const AllBuyers = () => {
 
                                     {b.name}
                                 </td>
-                                <td>Purple</td>
+                                <td> <button className='btn btn-danger'>Verify</button> </td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                    <button className='btn btn-warning'>Delete</button>
                                 </th>
                             </tr>)
                         }

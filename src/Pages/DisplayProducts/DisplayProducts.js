@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Product from './Product';
+import AppointmentModal from '../DisplayProducts/AppointmentModal';
+import ReportModal from './ReportModal/ReportModal';
+
 
 const DisplayProducts = () => {
 
     const products = useLoaderData();
+
+    const [selectBook, setSelectBook] = useState('');
+
+    const [selectReport, setSelectReport] = useState('');
 
 
     return (
@@ -13,14 +20,31 @@ const DisplayProducts = () => {
                 {
                     products.map(product =>
                         <Product
+
                             key={product._id}
                             product={product}
+                            id={product._id}
+                            setSelectBook={setSelectBook}
+                            setSelectReport={setSelectReport}
                         ></Product>
 
+
                     )
+
                 }
             </div>
-        </div>
+            <AppointmentModal
+                key={selectBook._id}
+                selectBook={selectBook}
+            ></AppointmentModal>
+
+            <ReportModal
+                key={selectReport._id}
+                selectReport={selectReport}
+            ></ReportModal>
+
+
+        </div >
     );
 };
 

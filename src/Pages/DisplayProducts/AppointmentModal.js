@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 
-const AppointmentModal = ({ name, price }) => {
+const AppointmentModal = ({ selectBook }) => {
 
     const { user } = useContext(AuthContext);
+
+    console.log(selectBook.productName);
+
 
     const handleBookAppointment = (event) => {
         event.preventDefault();
@@ -56,14 +59,14 @@ const AppointmentModal = ({ name, price }) => {
                     <div className='mt-10'>
                         <form onSubmit={handleBookAppointment} className="card-body">
                             <div className="form-control">
-                                <input name='productName' type="text" disabled value={name} className="input font-bold bg-white input-bordered text-black text-center" />
+                                <input name='productName' type="text" disabled value={selectBook.productName} className="input font-bold bg-white input-bordered text-black text-center" />
                             </div>
                             <div className="form-control">
-                                <input name='price' type="text" disabled value={price} className="input font-bold bg-white input-bordered text-black text-center" />
+                                <input name='price' type="text" disabled value={selectBook.price} className="input font-bold bg-white input-bordered text-black text-center" />
                             </div>
 
                             <div className="form-control">
-                                <input name='name' value={user?.displayName} type="text" className="input bg-white input-bordered text-center text-black" />
+                                <input name='name' value={user?.name} placeholder='Name' type="text" className="input bg-white input-bordered text-center text-black" />
                             </div>
                             <div className="form-control">
                                 <input name='email' value={user?.email} type="text" placeholder="Email" className="input bg-white input-bordered text-center text-black" />
