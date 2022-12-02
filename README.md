@@ -12,6 +12,7 @@
 
 In home page I implemented a single Header, Footer , Slider , Advertisement Section , ImageGallery Section, A a section where you can choose the category of product you want to see.
 
+## Implemented Basic JWT
 
 ### Firebase
 
@@ -29,14 +30,19 @@ Used Node JS to fetch data from form backend and creating API.
 
 ### Implemented a simple Dashboard section
 
-# Here A admin can see ALL the users, sellers and reported Items.
+# ADMIN DASHBOARD
+Here A admin can see ALL the users, sellers and reported Items.
 
-# Sellers Can add a new product and sell all her buyers and all his/her products.
+# SELLER DASHBOARD
+Sellers Can add a new product and sell all her buyers and all his/her products.
 
-# Buyer can see all the booked products .
+# BUYER DASHBOARD
+Buyer can see all the booked products .
 
-# Here a seller also have a advertise button if he/she clicked the button the product will advertised in Home Page.
+# Advertisement 
+Here a seller also have a advertise button if he/she clicked the button the product will advertised in Home Page.
 
-# All User see a book button and a report button if user clicked any of this buttons a modal will open and user will able to book or report a product.
+# REPORT BOOK NOW
+All User see a book button and a report button if user clicked any of this buttons a modal will open and user will able to book or report a product.
 
 
