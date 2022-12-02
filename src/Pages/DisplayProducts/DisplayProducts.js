@@ -3,9 +3,12 @@ import { useLoaderData } from 'react-router-dom';
 import Product from './Product';
 import AppointmentModal from '../DisplayProducts/AppointmentModal';
 import ReportModal from './ReportModal/ReportModal';
+import DynamicRouteName from '../../Hooks/DynamicRouteName';
 
 
 const DisplayProducts = () => {
+
+    DynamicRouteName('Product')
 
     const products = useLoaderData();
 

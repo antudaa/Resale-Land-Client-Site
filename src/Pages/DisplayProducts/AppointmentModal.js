@@ -14,8 +14,9 @@ const AppointmentModal = ({ selectBook }) => {
         const form = event.target;
         const productName = form.productName.value;
         const askingPrice = form.price.value;
+        const sellerEmail = form.sellerEmail.value;
         const sellerName = form.name.value;
-        const sellerEmail = form.email.value;
+        const buyerEmail = form.email.value;
         const offerPrice = form.offeringPrice.value;
         const userContactNo = form.phone.value;
         const meetLocation = form.location.value;
@@ -23,8 +24,9 @@ const AppointmentModal = ({ selectBook }) => {
         const meetingInfo = {
             productName: productName,
             askingPrice: askingPrice,
-            sellerName: sellerName,
             sellerEmail: sellerEmail,
+            sellerName: sellerName,
+            buyerEmail: buyerEmail,
             offerPrice: offerPrice,
             userContactNo: userContactNo,
             meetingLocation: meetLocation,
@@ -42,6 +44,7 @@ const AppointmentModal = ({ selectBook }) => {
             .then((data) => {
                 if (data.acknowledged) {
                     toast.success('Your message successfully sent to the seller. Seller will contact with you soon.');
+                    form.reset();
                 } else {
                     toast.error(data.message);
                 }
@@ -63,6 +66,9 @@ const AppointmentModal = ({ selectBook }) => {
                             </div>
                             <div className="form-control">
                                 <input name='price' type="text" disabled value={selectBook.price} className="input font-bold bg-white input-bordered text-black text-center" />
+                            </div>
+                            <div className="form-control">
+                                <input name='sellerEmail' type="text" disabled value={selectBook.email} className="input font-bold bg-white input-bordered text-black text-center" />
                             </div>
 
                             <div className="form-control">

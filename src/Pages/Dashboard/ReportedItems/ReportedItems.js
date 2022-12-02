@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import DynamicRouteName from '../../../Hooks/DynamicRouteName';
 
 const ReportedItems = () => {
+
+    DynamicRouteName('Reported-Items');
 
     const uri = `http://localhost:5000/reportedItems`;
 

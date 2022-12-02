@@ -1,6 +1,10 @@
 import React from 'react';
+import DynamicRouteName from '../../Hooks/DynamicRouteName';
 
 const Blog = () => {
+
+    DynamicRouteName("Blog");
+
     return (
         <div className='mb-16'>
             <div>

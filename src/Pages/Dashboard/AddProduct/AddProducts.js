@@ -2,8 +2,11 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import DynamicRouteName from '../../../Hooks/DynamicRouteName';
 
 const AddProducts = () => {
+
+    DynamicRouteName('add-product');
 
     const { user } = useContext(AuthContext);
 
@@ -49,7 +52,6 @@ const AddProducts = () => {
             }
         }
 
-        console.log(productInfo);
 
         fetch(`http://localhost:5000/products`, {
             method: "POST",

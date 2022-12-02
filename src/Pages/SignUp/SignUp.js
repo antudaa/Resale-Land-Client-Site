@@ -85,7 +85,6 @@ const SignUp = () => {
         signInWithGoogle(googleProvider)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
 
                 fetch(`http://localhost:5000/users?email=${user.email}&name=${user.displayName}`, {
                     method: 'PUT',

@@ -64,25 +64,31 @@ const ImageGallery = () => {
         {
             src: "https://s3-eu-west-1.amazonaws.com/img4.haraj.com.sa/cache4/348x464-1_-uTSogmxi4e4iYl.jpg",
             width: 600,
-            height: 700
+            height: 600
         },
         {
             src: "https://laptopworld.vn/media/product/9857_dell_xps_17_9710_2.jpg",
             width: 1000,
-            height: 720
+            height: 900
         },
         {
             src: "https://www.megabites.com.ph/wp-content/uploads/2021/04/hp-probook.jpg",
             width: 1000,
-            height: 590
+            height: 900
+        },
+        {
+            src: "https://preview.redd.it/uiqwhf6dbgw41.jpg?width=3809&format=pjpg&auto=webp&s=cb7b379a49091486670673e1afe0dee798b62160",
+            width: 1000,
+            height: 900
         }
+        
     ];
 
 
     return (
         <div>
-            <div className="lg:px-20 px-4 lg:pt-20 text-start text-2xl lg:text-5xl font-bold text-slate-800">
-                <h1>Top Products</h1>
+            <div className="lg:px-20 my-10 px-4 lg:pt-20 text-center text-2xl lg:text-5xl font-bold text-slate-800">
+                <h1>Image Gallery</h1>
             </div>
             <div className='lg:p-20 p-4'>
                 <PhotoProvider>

@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
+import DynamicRouteName from '../../../Hooks/DynamicRouteName';
 
 const AllBuyers = () => {
 
+    DynamicRouteName('All-Buyers');
+
     const { user } = useContext(AuthContext);
 
-    const uri = `http://localhost:5000/users/buyers?role=${'buyer'}`;
+    const uri = `http://localhost:5000/users/buyers`;
 
     const { data: buyers = [] } = useQuery({
         queryKey: ['buyers'],
@@ -37,7 +40,6 @@ const AllBuyers = () => {
                             </th>
                             <th>Email</th>
                             <th>Name</th>
-                            <th>Verify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -55,7 +57,6 @@ const AllBuyers = () => {
 
                                     {b.name}
                                 </td>
-                                <td> <button className='btn btn-danger'>Verify</button> </td>
                                 <th>
                                     <button className='btn btn-warning'>Delete</button>
                                 </th>

@@ -3,9 +3,24 @@ import ImageGallery from '../ImageGallery/ImageGallery';
 import Banner from '.././Banner/Banner';
 import ProductCategory from '../ProductCategory/ProductCategory';
 import DynamicRouteName from '../../../Hooks/DynamicRouteName';
+import AdvertisedProducts from '../AdvertiseProducts/AdvertisedProducts';
+import { useQuery } from '@tanstack/react-query';
 
 
 const Home = () => {
+
+    const uri = `http://localhost:5000/advertiseProduct`;
+
+    const { data: products = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await fetch(uri,
+
+            );
+            const data = await res.json();
+            return data;
+        }
+    });
 
     DynamicRouteName('Home');
 
@@ -13,6 +28,11 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <ProductCategory></ProductCategory>
+            {
+                products.length >= 1 ?
+                <AdvertisedProducts></AdvertisedProducts>:
+                <></>
+            }
             <ImageGallery></ImageGallery>
         </div>
     );
