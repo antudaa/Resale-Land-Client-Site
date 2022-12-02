@@ -24,7 +24,7 @@ const Header = ({ handleThemeSwitch }) => {
                         {
                             user?.uid ?
                                 <>
-                                    <li><Link to='/dashboard'>DashBoard</Link></li>
+                                    <li><Link to='/dashboard'>Dashboard</Link></li>
                                     <li><Link onClick={logOut}>Log Out</Link></li>
 
                                 </> :
@@ -46,7 +46,7 @@ const Header = ({ handleThemeSwitch }) => {
                     {
                         user?.uid ?
                             <>
-                                <li><Link to='/dashboard'>DashBoard</Link></li>
+                                <li><Link to='/dashboard'>Dashboard</Link></li>
                                 <li><Link onClick={logOut}>Log Out</Link></li>
 
                             </> :

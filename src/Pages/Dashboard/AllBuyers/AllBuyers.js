@@ -24,6 +24,10 @@ const AllBuyers = () => {
         }
     });
 
+    const handleVerify = (id) => {
+        console.log(id);
+    }
+
 
     return (
         <div>
@@ -40,6 +44,7 @@ const AllBuyers = () => {
                             </th>
                             <th>Email</th>
                             <th>Name</th>
+                            <th>Verify Buyer</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -57,6 +62,7 @@ const AllBuyers = () => {
 
                                     {b.name}
                                 </td>
+                                <td> <button onClick={() => handleVerify(b._id)} className='btn btn-danger'>Verify</button> </td>
                                 <th>
                                     <button className='btn btn-warning'>Delete</button>
                                 </th>

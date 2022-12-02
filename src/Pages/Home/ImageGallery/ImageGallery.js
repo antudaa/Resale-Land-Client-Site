@@ -88,7 +88,7 @@ const ImageGallery = () => {
     return (
         <div>
             <div className="lg:px-20 my-10 px-4 lg:pt-20 text-center text-2xl lg:text-5xl font-bold text-slate-800">
-                <h1>Image Gallery</h1>
+                <h1>IMAGE GALLERY</h1>
             </div>
             <div className='lg:p-20 p-4'>
                 <PhotoProvider>

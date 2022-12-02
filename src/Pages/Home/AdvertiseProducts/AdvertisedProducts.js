@@ -20,7 +20,7 @@ const AdvertisedProducts = () => {
 
     return (
         <div>
-            <h1 className='text-2xl text-slate-800 lg:text-5xl text-center my-16 font-bold'>Advertise</h1>
+            <h1 className='text-2xl text-slate-800 lg:text-5xl text-center my-16 font-bold'>ADVERTISED ITEMS</h1>
 
             <div className='flex flex-wrap justify-center gap-8 mx-auto px-8'>
                 {

@@ -9,7 +9,7 @@ const Blog = () => {
         <div className='mb-16'>
             <div>
                 <h1 className='text-center text-2xl lg:text-4xl text-sky-500 my-16'>Blogs</h1>
-                <div className="collapse w-3/5 mx-auto">
+                <div className="collapse w-11/12 lg:w-3/5 mx-auto">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title text-white text-2xl bg-primary peer-checked:bg-secondary peer-checked:text-secondary-content">
                         What are the different ways to manage a state in a React application?
@@ -24,7 +24,7 @@ const Blog = () => {
                         </p>
                     </div>
                 </div>
-                <div className="collapse w-3/5 mx-auto">
+                <div className="collapse w-11/12 lg:w-3/5 mx-auto">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title text-white text-2xl bg-primary peer-checked:bg-secondary peer-checked:text-secondary-content">
                         How does prototypical inheritance work?
@@ -38,7 +38,7 @@ const Blog = () => {
                         </p>
                     </div>
                 </div>
-                <div className="collapse w-3/5 mx-auto">
+                <div className="collapse w-11/12 lg:w-3/5 mx-auto">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title text-white text-2xl bg-primary peer-checked:bg-secondary peer-checked:text-secondary-content">
                         What is a unit test? Why should we write unit tests?
@@ -52,7 +52,7 @@ const Blog = () => {
                         </p>
                     </div>
                 </div>
-                <div className="collapse w-3/5 mx-auto">
+                <div className="collapse w-11/12 lg:w-3/5 mx-auto">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title text-white text-2xl bg-primary peer-checked:bg-secondary peer-checked:text-secondary-content">
                         React vs. Angular vs. Vue?

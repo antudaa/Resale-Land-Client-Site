@@ -29,7 +29,7 @@ const SellerProducts = () => {
 
         const productInfo = {
             "category": product.category,
-            "categoryId" : product.categoryId,
+            "categoryId": product.categoryId,
             "productName": product.productName,
             "img": [
                 product.img[0],
@@ -63,7 +63,7 @@ const SellerProducts = () => {
                 }
             })
             .catch(err => console.log(err.message));
-        
+
     }
 
     return (
@@ -85,6 +85,7 @@ const SellerProducts = () => {
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Advertise</th>
+                            <th>Delete product</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,6 +111,9 @@ const SellerProducts = () => {
                                 </td>
                                 <td>
                                     <button onClick={() => handleAdvertise(o)} className='btn btn-danger'>Advertise</button>
+                                </td>
+                                <td>
+                                    <button className='btn btn-warning'>DELETE</button>
                                 </td>
                             </tr>)
                         }
