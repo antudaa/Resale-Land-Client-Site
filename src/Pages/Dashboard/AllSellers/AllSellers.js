@@ -10,7 +10,7 @@ const AllSellers = () => {
 
     const { user } = useContext(AuthContext);
 
-    const uri = `http://localhost:5000/users/sellers`;
+    const uri = `https://resale-land-server.vercel.app/users/sellers`;
 
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
@@ -31,7 +31,7 @@ const AllSellers = () => {
         console.log(id);
         const proceed = window.confirm("Are you sure? You want to delete this review!");
         if (proceed) {
-            fetch(`http://localhost:5000/users/sellers/${id}`, {
+            fetch(`https://resale-land-server.vercel.app/users/sellers`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -47,7 +47,7 @@ const AllSellers = () => {
 
     const handleVerify = (id) => {
 
-        fetch(`http://localhost:5000/users/update/${id}`, {
+        fetch(`https://resale-land-server.vercel.app/users/update/${id}`, {
                 method: 'PUT'
             })
                 .then(res => res.json())

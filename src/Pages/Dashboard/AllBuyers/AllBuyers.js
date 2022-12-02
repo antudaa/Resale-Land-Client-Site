@@ -9,7 +9,7 @@ const AllBuyers = () => {
 
     const { user } = useContext(AuthContext);
 
-    const uri = `http://localhost:5000/users/buyers`;
+    const uri = `https://resale-land-server.vercel.app/users/buyers`;
 
     const { data: buyers = [] } = useQuery({
         queryKey: ['buyers'],

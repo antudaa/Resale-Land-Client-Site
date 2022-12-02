@@ -48,7 +48,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
 
-                fetch(`http://localhost:5000/users?email=${user.email}&name=${user.displayName}`, {
+                fetch(`https://resale-land-server.vercel.app/users?email=${user.email}&name=${user.displayName}`, {
                     method: 'PUT',
                 })
                     .then(res => res.json())

@@ -6,7 +6,7 @@ const ReportedItems = () => {
 
     DynamicRouteName('Reported-Items');
 
-    const uri = `http://localhost:5000/reportedItems`;
+    const uri = `https://resale-land-server.vercel.app/reportedItems`;
 
     const { data: reports = [] } = useQuery({
         queryKey: ['reports'],

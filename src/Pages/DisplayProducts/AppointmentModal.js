@@ -33,7 +33,7 @@ const AppointmentModal = ({ selectBook }) => {
         }
         console.log(meetingInfo);
 
-        fetch('http://localhost:5000/buyerInfo', {
+        fetch('https://resale-land-server.vercel.app/buyerInfo', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

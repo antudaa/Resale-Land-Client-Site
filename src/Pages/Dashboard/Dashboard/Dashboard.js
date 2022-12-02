@@ -12,7 +12,7 @@ const Dashboard = () => {
     // const [curr, setCurr] = useState({});
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/users`)
+    //     fetch(`https://resale-land-server.vercel.app/users`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setUsers(data);

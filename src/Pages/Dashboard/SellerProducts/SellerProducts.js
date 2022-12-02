@@ -10,7 +10,7 @@ const SellerProducts = () => {
 
     const { user } = useContext(AuthContext);
 
-    const uri = `http://localhost:5000/sellerProducts/${user?.email}`;
+    const uri = `https://resale-land-server.vercel.app/sellerProducts/${user?.email}`;
 
     const { data: myProducts = [] } = useQuery({
         queryKey: ['myProducts'],
@@ -49,7 +49,7 @@ const SellerProducts = () => {
 
         console.log(productInfo);
 
-        fetch(`http://localhost:5000/advertiseProduct`, {
+        fetch(`https://resale-land-server.vercel.app/advertiseProduct`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

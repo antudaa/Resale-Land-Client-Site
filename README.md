@@ -12,23 +12,23 @@
 
 In home page I implemented a single Header, Footer , Slider , Advertisement Section , ImageGallery Section, A a section where you can choose the category of product you want to see.
 
-## Implemented Basic JWT
+# Implemented Basic JWT
 
-### Firebase
+# Firebase
 
 Simple Authentication system with firebase Implemented a login system and a sign up system.
 
-### MongoDB
+# MongoDB
 
 Used MongoDB as a backend Database to store data.
 
-## Node Js
+# Node Js
 
 Used Node JS to fetch data from form backend and creating API.
 
-## Implemented CRUD Operation
+# Implemented CRUD Operation
 
-### Implemented a simple Dashboard section
+# Implemented a simple Dashboard section
 
 # ADMIN DASHBOARD
 Here A admin can see ALL the users, sellers and reported Items.

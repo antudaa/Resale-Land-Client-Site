@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
 
-    const uri = `http://localhost:5000/advertiseProduct`;
+    const uri = `https://resale-land-server.vercel.app/advertiseProduct`;
 
     const { data: products = [] } = useQuery({
         queryKey: ['products'],

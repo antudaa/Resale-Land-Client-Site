@@ -9,7 +9,7 @@ const ProductCategory = () => {
     const [categoryId, setCategoryId] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/category')
+        fetch('https://resale-land-server.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategoryId(data))
             .catch(error => console.log(error.message));
